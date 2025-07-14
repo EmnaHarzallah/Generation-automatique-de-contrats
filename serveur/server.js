@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 
 const uploadRoutes = require("./routes/uploads");
+const ContratRoutes = require("./routes/ContratRoutes");
 
 dotenv.config();
 const app = express();
@@ -18,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api", uploadRoutes); // Résultat : POST /api/upload-template
-
+app.use("api/contrat", ContratRoutes);
 // Route de test
 app.get("/", (req, res) => {
   res.send("Backend server is running");
