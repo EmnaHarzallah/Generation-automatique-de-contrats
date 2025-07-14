@@ -6,6 +6,7 @@ const path = require("path");
 
 const uploadRoutes = require("./routes/uploads");
 const ContratRoutes = require("./routes/ContratRoutes");
+const stripeRoutes = require("./routes/stripe");
 
 dotenv.config();
 const app = express();
@@ -18,12 +19,14 @@ app.use(express.urlencoded({ extended: true }));
 // Sert les fichiers statiques (.docx)
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.use("/api", uploadRoutes); // Résultat : POST /api/upload-template
-app.use("api/contrat", ContratRoutes);
-// Route de test
+app.use("/api/upload", uploadRoutes);
+app.use("/api/contrat", ContratRoutes);
+// Route de testv
 app.get("/", (req, res) => {
   res.send("Backend server is running");
 });
+
+app.use("/api/stripe", stripeRoutes);
 
 // Connexion MongoDB
 mongoose
@@ -31,7 +34,7 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Démarrage du serveur (doit venir à la fin !)
+// Démarrage du serveur
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -1,17 +1,16 @@
 const mongoose = require("mongoose");
 
-const ContractFieldSchema = new mongoose.Schema(
+const ContratFieldSchema = new mongoose.Schema(
   {
     template: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "ContractTemplate",
+      ref: "ContratTemplate",
       required: true,
     },
     nom_du_champ: { type: String, required: true }, // ex: "nom_societe"
     type: {
       type: String,
-      enum: ["text", "date", "email", "number"],
-      default: "text",
+      enum: ["nom_client", "duree", "option", "signature"],
     },
     obligatoire: { type: Boolean, default: true },
     ordre_affichage: Number,
@@ -20,4 +19,4 @@ const ContractFieldSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("ContractField", ContractFieldSchema);
+module.exports = mongoose.model("ContratField", ContratFieldSchema);

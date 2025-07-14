@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const ContractSchema = new mongoose.Schema(
+const ContratSchema = new mongoose.Schema(
   {
     template: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "ContractTemplate",
+      ref: "ContratTemplate",
       required: true,
     },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
@@ -20,4 +20,4 @@ const ContractSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Contract", ContractSchema);
+module.exports = mongoose.model("Contrat", ContratSchema);

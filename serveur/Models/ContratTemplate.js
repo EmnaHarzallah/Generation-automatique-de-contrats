@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ContractTemplateSchema = new mongoose.Schema(
+const ContratTemplateSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     description: String,
@@ -21,4 +21,4 @@ const ContractTemplateSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("ContractTemplate", ContractTemplateSchema);
+module.exports = mongoose.model("ContratTemplate", ContratTemplateSchema);

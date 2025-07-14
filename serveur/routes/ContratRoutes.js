@@ -1,17 +1,20 @@
+const express = require("express");
 const router = express.Router();
-const contractController = require("../controllers/contractController");
+const ContratController = require("../controllers/ContratController");
 
-router.post("/generate", contractController.generateContract);
+router.post("/generate", ContratController.generateContrat);
 
 router.get("/:id/download", async (req, res) => {
   try {
-    const contract = await Contract.findById(req.params.id);
-    if (!contract) return res.status(404).send("Contrat non trouvé");
+    const Contrat = await Contrat.findById(req.params.id);
+    if (!Contrat) return res.status(404).send("Contrat non trouvé");
 
-    res.download(contract.generatedFilePath);
+    res.download(Contrat.generatedFilePath);
   } catch (err) {
     res.status(500).send(err.message);
   }
 });
+
+router.get("/templates", ContratController.getTemplate);
 
 module.exports = router;

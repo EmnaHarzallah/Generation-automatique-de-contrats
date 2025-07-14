@@ -1,14 +1,14 @@
-const ContractTemplate = require("../models/ContractTemplate");
-const Contract = require("../models/Contract");
+const ContratTemplate = require("../Models/ContratTemplate");
+const Contrat = require("../Models/Contrat");
 const docxGenerator = require("../services/docxGenerator");
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("../config/StripeConfig");
 
-exports.generateContract = async (req, res) => {
+exports.generateContrat = async (req, res) => {
   const { templateId, formData } = req.body;
 
   try {
     // Récupérer le template
-    const template = await ContractTemplate.findById(templateId);
+    const template = await ContratTemplate.findById(templateId);
     if (!template)
       return res.status(404).json({ error: "Template non trouvé" });
 
@@ -16,11 +16,11 @@ exports.generateContract = async (req, res) => {
     const outputFileName = `contrat_${Date.now()}.docx`;
     const outputPath = path.join(
       __dirname,
-      "../generated-contracts",
+      "../generated-Contrats",
       outputFileName
     );
 
-    await docxGenerator.generateContract(
+    await docxGenerator.generateContrat(
       template.filePath,
       outputPath,
       formData
@@ -34,7 +34,7 @@ exports.generateContract = async (req, res) => {
     });
 
     // Sauvegarder l'instance du contrat
-    const contract = new Contract({
+    const Contrat = new Contrat({
       template: templateId,
       user: req.user._id,
       data: formData,
@@ -42,12 +42,21 @@ exports.generateContract = async (req, res) => {
       paymentIntentId: paymentIntent.id,
       status: "pending_payment",
     });
-    await contract.save();
+    await Contrat.save();
 
     res.json({
       clientSecret: paymentIntent.client_secret,
-      contractId: contract._id,
+      ContratId: Contrat._id,
     });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.getTemplate = async (req, res) => {
+  try {
+    const template = await ContratTemplate.findById(req.params.id);
+    res.json(template);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
