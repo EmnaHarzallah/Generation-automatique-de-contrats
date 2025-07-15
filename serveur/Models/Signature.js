@@ -1,23 +1,15 @@
 const mongoose = require("mongoose");
 
-const SignatureSchema = new mongoose.Schema(
-  {
-    contractInstance: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "ContractInstance",
-      required: true,
-    },
-    signataire_nom: String,
-    signataire_email: String,
-    status: {
-      type: String,
-      enum: ["en_attente", "signé", "refusé"],
-      default: "en_attente",
-    },
-    signature_date: Date,
-    signature_url: String, // lien du document signé
+const SignatureSchema = new mongoose.Schema({
+  contrat: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Contrat",
+    required: true,
   },
-  { timestamps: true }
-);
+  signataire_nom: String,
+  signataire_email: String,
+  signature_image: String, // stocke l’image base64
+  signature_date: { type: Date, default: Date.now },
+});
 
 module.exports = mongoose.model("Signature", SignatureSchema);

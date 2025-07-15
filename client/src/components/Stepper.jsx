@@ -7,15 +7,15 @@ export default function Stepper({ currentStep }) {
   return (
     <div style={styles.stepperContainer}>
       <div style={styles.stepper}>
-        {[1, 2, 3].map((step, index) => (
+        {[0 , 1, 2, 3 , 4].map((step, index) => (
           <React.Fragment key={step}>
             <div style={isActive(step) ? styles.stepActive : styles.step}>
               <div style={styles.stepNumber}>{step}</div>
               <div style={styles.stepLabel}>
-                {step === 1 ? 'Formulaire' : step === 2 ? 'Paiement' : 'Téléchargement'}
+                {step === 0 ? 'Type' : step === 1 ? 'Formulaire' : step === 2 ? 'Signature' : step === 3 ? 'Paiement' : 'Téléchargement'}
               </div>
             </div>
-            {step < 3 && <div style={styles.stepLine}></div>}
+            {step < 4 && <div style={styles.stepLine}></div>}
           </React.Fragment>
         ))}
       </div>

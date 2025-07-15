@@ -81,7 +81,7 @@ export default function PayementDetails({
 
         <Stepper currentStep={currentStep} />
 
-        {currentStep === 2 && (
+        {currentStep === 3 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <h2 style={{ fontSize: '20px', fontWeight: '600' }}>Paiement sécurisé</h2>
             <p style={{ fontSize: '16px', color: '#4b5563' }}>

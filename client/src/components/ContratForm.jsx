@@ -1,7 +1,7 @@
 import React from 'react';
 import Stepper from './Stepper';
 
-export default function ContratForm({ formData, setFormData, setCurrentStep }) {
+export default function ContratForm({ formData, setFormData, setCurrentStep, goToPreviousStep }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -105,8 +105,21 @@ export default function ContratForm({ formData, setFormData, setCurrentStep }) {
             marginTop: '20px'
           }}
         >
-          Continuer vers le paiement
+          Signer le contrat 
         </button>
+         <button
+                onClick={goToPreviousStep}
+                style={{
+                  padding: '12px 20px',
+                  backgroundColor: '#e5e7eb',
+                  borderRadius: '8px',
+                  border: 'none',
+                  fontWeight: '500',
+                  cursor: 'pointer'
+                }}
+              >
+                Retour
+              </button>
       </form>
     </>
   );

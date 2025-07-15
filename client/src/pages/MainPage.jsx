@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ContratForm from "../components/ContratForm";
 import PayementDetails from "../components/PaymentDetails";
 import UploadContrat from "../components/UploadContrat";
+import SignatureContrat from "../components/SignatureContrat";
+import NewContrat from "../components/NewContrat";
 
 export default function MainPage() {
   const [formData, setFormData] = useState({
@@ -10,7 +12,7 @@ export default function MainPage() {
     option: 'WeeFizz API'
   });
 
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const goToPreviousStep = () => {
@@ -65,6 +67,13 @@ export default function MainPage() {
         maxWidth: '700px',
         width: '100%'
       }}>
+        {currentStep === 0 && (
+          <NewContrat
+            formData={formData}
+            setFormData={setFormData}
+            setCurrentStep={setCurrentStep}
+          />
+        )}
         {currentStep === 1 && (
           <ContratForm
             formData={formData}
@@ -74,6 +83,15 @@ export default function MainPage() {
         )}
 
         {currentStep === 2 && (
+          <SignatureContrat
+            currentStep={currentStep}
+            formData={formData}
+            goToPreviousStep={goToPreviousStep}
+            setCurrentStep={setCurrentStep}
+            setLoading={setLoading}
+          />
+        )}
+    {currentStep === 3 && (
           <PayementDetails
             currentStep={currentStep}
             formData={formData}
@@ -82,8 +100,7 @@ export default function MainPage() {
             setLoading={setLoading}
           />
         )}
-
-        {currentStep === 3 && (
+        {currentStep === 4 && (
           <UploadContrat
             currentStep={currentStep}
             formData={formData}

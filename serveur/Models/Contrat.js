@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const ContratSchema = new mongoose.Schema(
   {
+    type: {
+      type: String,
+      enum: ["NDA", "Mission", "Stage", "Autre"], // tes types possibles
+      required: true,
+    },
     template: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "ContratTemplate",

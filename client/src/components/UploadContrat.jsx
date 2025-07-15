@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function UploadContrat({ currentStep, formData, setCurrentStep }) {
-  if (currentStep !== 3) return null;
+  if (currentStep !== 4) return null;
 
   return (
     <div style={{ textAlign: 'center', marginTop: '30px' }}>

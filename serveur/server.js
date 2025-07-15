@@ -7,7 +7,8 @@ const path = require("path");
 const uploadRoutes = require("./routes/uploads");
 const ContratRoutes = require("./routes/ContratRoutes");
 const stripeRoutes = require("./routes/stripe");
-
+const signatureRoutes = require("./routes/SignatureRoutes");
+const contratTemplatesRouter = require("./routes/TemplateRoutes");
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,6 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/upload", uploadRoutes);
 app.use("/contrat", ContratRoutes);
 app.use("/stripe", stripeRoutes);
+
+app.use("/contrat-templates", contratTemplatesRouter);
+
+app.use("/signature", signatureRoutes);
 // Route de testv
 app.get("/", (req, res) => {
   res.send("Backend server is running");
