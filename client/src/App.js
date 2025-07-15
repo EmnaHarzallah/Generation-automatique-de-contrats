@@ -5,6 +5,7 @@ import Stepper from "./components/Stepper";
 import SuccessPage from "./pages/SuccessPage";
 import CancelPage from "./pages/CancelPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Column from "./components/Column";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -19,6 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/column" element={<Column />} />
         <Route path="/stepper" element={<Stepper />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/success" element={<SuccessPage />} />

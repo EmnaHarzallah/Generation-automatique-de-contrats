@@ -28,13 +28,18 @@ export default function NewContrat({ userId, onNext }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!selectedTemplateId) {
-      setError("Veuillez sélectionner un modèle de contrat.");
-      return;
-    }
+  e.preventDefault();
+  if (!selectedTemplateId) {
+    setError("Veuillez sélectionner un modèle de contrat.");
+    return;
+  }
+
+  if (typeof onNext === 'function') {
     onNext({ userId, templateId: selectedTemplateId });
-  };
+  } else {
+    console.error("La fonction onNext n’a pas été fournie au composant NewContrat");
+  }
+};
 
   if (loading) return <p>Chargement des modèles...</p>;
 

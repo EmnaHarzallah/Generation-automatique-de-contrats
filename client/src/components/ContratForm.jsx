@@ -57,39 +57,16 @@ export default function ContratForm({ formData, setFormData, setCurrentStep, goT
                 borderRadius: '8px',
                 border: '1px solid #d1d5db'
               }}
-            >
+
+            ><option value="1">1 mois</option>
+              <option value="3">3 mois</option>
               <option value="6">6 mois</option>
               <option value="12">12 mois</option>
               <option value="24">24 mois</option>
             </select>
           </div>
 
-          <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
-              Option choisie <span style={{ color: 'red' }}>*</span>
-            </label>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {['WeeFizz API', 'WeeFizz Fashion'].map((opt) => (
-                <label key={opt} style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                  <input
-                    type="radio"
-                    name="option"
-                    value={opt}
-                    checked={formData.option === opt}
-                    onChange={handleChange}
-                  />
-                  <div>
-                    <div style={{ fontWeight: '600' }}>{opt}</div>
-                    <div style={{ fontSize: '14px', color: '#6b7280' }}>
-                      {opt === 'WeeFizz API'
-                        ? 'Solution complète pour intégration API'
-                        : "Plateforme spécialisée pour l'industrie de la mode"}
-                    </div>
-                  </div>
-                </label>
-              ))}
-            </div>
-          </div>
+          
         </div>
 
         <button
@@ -107,7 +84,9 @@ export default function ContratForm({ formData, setFormData, setCurrentStep, goT
         >
           Signer le contrat 
         </button>
-         <button
+         
+      </form>
+      <button
                 onClick={goToPreviousStep}
                 style={{
                   padding: '12px 20px',
@@ -120,7 +99,6 @@ export default function ContratForm({ formData, setFormData, setCurrentStep, goT
               >
                 Retour
               </button>
-      </form>
     </>
   );
 }

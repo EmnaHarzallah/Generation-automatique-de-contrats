@@ -16,8 +16,14 @@ export default function MainPage() {
   const [loading, setLoading] = useState(false);
 
   const goToPreviousStep = () => {
-    setCurrentStep(prev => Math.max(1, prev - 1));
+    setCurrentStep(prev => Math.max(0, prev - 1));
   };
+
+  const handleNext = (data) => {
+  console.log("Données sélectionnées :", data); 
+  setFormData((prev) => ({ ...prev, ...data }));
+  setCurrentStep((prev) => prev + 1);
+};
 
   return (
     <div className="onboarding" style={{
@@ -72,14 +78,16 @@ export default function MainPage() {
             formData={formData}
             setFormData={setFormData}
             setCurrentStep={setCurrentStep}
+            onNext={handleNext} 
           />
         )}
         {currentStep === 1 && (
           <ContratForm
             formData={formData}
             setFormData={setFormData}
-            setCurrentStep={setCurrentStep}
-          />
+            setCurrentStep={setCurrentStep} 
+            goToPreviousStep={goToPreviousStep}
+            />
         )}
 
         {currentStep === 2 && (
