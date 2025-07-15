@@ -16,17 +16,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Sert les fichiers statiques (.docx)
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-app.use("/api/upload", uploadRoutes);
-app.use("/api/contrat", ContratRoutes);
+app.use("/upload", uploadRoutes);
+app.use("/contrat", ContratRoutes);
+app.use("/stripe", stripeRoutes);
 // Route de testv
 app.get("/", (req, res) => {
   res.send("Backend server is running");
 });
-
-app.use("/api/stripe", stripeRoutes);
 
 // Connexion MongoDB
 mongoose

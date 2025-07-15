@@ -14,7 +14,7 @@ export default function PayementDetails({
     const handleStripePayment = async () => {
   const stripe = await stripePromise;
 
-  const response = await fetch("http://localhost:5000/api/stripe/create-checkout-session", {
+  const response = await fetch("http://localhost:5000/stripe/create-checkout-session", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
